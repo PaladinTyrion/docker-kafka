@@ -21,11 +21,11 @@ if [ -z "$KAFKA_BROKER_ID" ]; then
 fi
 echo "KAFKA_BROKER_ID=$KAFKA_BROKER_ID"
 
-if [ -z "$KAFKA_ADVERTISED_HOST_NAME" ]; then
-  echo "\$KAFKA_ADVERTISED_HOST_NAME not set"
+if [ -z "$KAFKA_LISTENERS" ]; then
+  echo "\$KAFKA_LISTENERS not set"
   exit 1
 fi
-echo "KAFKA_ADVERTISED_HOST_NAME=$KAFKA_ADVERTISED_HOST_NAME"
+echo "KAFKA_LISTENERS=$KAFKA_LISTENERS"
 
 if [ -z "$KAFKA_ZOOKEEPER_CONNECT" ]; then
   echo "\$KAFKA_ZOOKEEPER_CONNECT not set"
