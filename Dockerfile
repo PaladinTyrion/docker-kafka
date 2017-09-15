@@ -10,6 +10,8 @@ LABEL name="kafka" version=${KAFKA_VERSION}
 
 ENV KAFKA_HOME /opt/kafka
 
+ENV KAFKA_HEAP_OPTS="-Xmx14G -Xms1G -XX:PermSize=64m -XX:MaxPermSize=128m"
+
 ADD ./src /
 
 RUN chmod +x /usr/local/sbin/start.sh
