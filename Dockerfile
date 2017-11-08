@@ -23,8 +23,10 @@ RUN mkdir /opt \
   && mv /opt/kafka_* $KAFKA_HOME \
   && chown -R root:root $KAFKA_HOME
 
-RUN mkdir /var/lib/kafka && chown -R root:root /var/lib/kafka \
-  && mkdir /var/log/kafka && chown -R root:root /var/log/kafka
+RUN addgroup -S kafka -g 440 \
+   && adduser -h /var/lib/kafka -G kafka -u 440 -S -H -s /sbin/nologin kafka \
+   && mkdir -p /var/lib/kafka && chown -R kafka:kafka /var/lib/kafka \
+   && mkdir -p /var/log/kafka && chown -R kafka:kafka /var/log/kafka
 
 EXPOSE 9092
 
