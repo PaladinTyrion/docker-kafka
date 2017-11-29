@@ -2,7 +2,7 @@
 
 FROM openjdk:8-jre-alpine
 
-ARG KAFKA_VERSION=0.11.0.0
+ARG KAFKA_VERSION=0.11.0.2
 ARG KAFKA_MIRROR=http://www-eu.apache.org
 ARG KAFKA_SCALA_VERSION=2.12
 
@@ -19,7 +19,7 @@ RUN chmod +x /usr/local/sbin/start.sh
 RUN apk add --no-cache wget bash
 
 RUN mkdir /opt \
-  && wget -q -O - ${KAFKA_MIRROR}/dist//kafka/${KAFKA_VERSION}/kafka_${KAFKA_SCALA_VERSION}-${KAFKA_VERSION}.tgz  | tar -xzf - -C /opt \
+  && wget -q -O - ${KAFKA_MIRROR}/dist/kafka/${KAFKA_VERSION}/kafka_${KAFKA_SCALA_VERSION}-${KAFKA_VERSION}.tgz  | tar -xzf - -C /opt \
   && mv /opt/kafka_* $KAFKA_HOME \
   && chown -R root:root $KAFKA_HOME
 
