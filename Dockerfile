@@ -11,8 +11,9 @@ LABEL name="kafka" version=${KAFKA_VERSION}
 ENV KAFKA_HOME /opt/kafka
 
 ENV KAFKA_HEAP_OPTS="-Xmx4G -Xms2G -XX:PermSize=64m -XX:MaxPermSize=128m"
+ENV JMX_PORT="9999"
 
-ADD ./src /
+COPY ./src /
 
 RUN chmod +x /usr/local/sbin/start.sh
 
@@ -28,7 +29,7 @@ RUN addgroup -S kafka -g 440 \
    && mkdir -p /var/lib/kafka && chown -R kafka:kafka /var/lib/kafka \
    && mkdir -p /var/log/kafka && chown -R kafka:kafka /var/log/kafka
 
-EXPOSE 9092
+EXPOSE 9092 9999
 
 VOLUME ["/var/lib/kafka", "/var/log/kafka"]
 
